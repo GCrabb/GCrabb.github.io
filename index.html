@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garrett Crabb — Producer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F2EDE4; --cream-dark: #EDE8DE; --ink: #1a1612;
+      --ink-light: rgba(26,22,18,0.55); --ink-faint: rgba(26,22,18,0.18);
+      --brown: #5C4A32; --fluoro: #D4FF00;
+      --serif: 'Playfair Display', Georgia, serif;
+      --body: 'EB Garamond', Georgia, serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    nav { position: sticky; top: 0; z-index: 100; background: var(--cream); display: flex; justify-content: space-between; align-items: baseline; padding: 22px 48px 18px; border-bottom: 0.5px solid var(--ink-faint); }
+    .nav-name { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; color: var(--ink); }
+    .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-available { background: var(--ink) !important; color: var(--fluoro) !important; padding: 4px 12px !important; }
+    .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 80px 48px 64px; align-items: end; min-height: 52vh; }
+    .hero-title { font-family: var(--serif); font-size: clamp(52px, 7vw, 88px); font-weight: 400; line-height: 0.9; letter-spacing: -0.02em; }
+    .hero-title em { font-style: italic; color: var(--brown); }
+    .hero-right { display: flex; flex-direction: column; gap: 20px; padding-bottom: 8px; }
+    .hero-role { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
+    .hero-tagline { font-family: var(--body); font-size: 20px; font-style: italic; color: var(--brown); line-height: 1.5; border-left: 2.5px solid var(--fluoro); padding-left: 18px; }
+    .divider { height: 0.5px; background: var(--ink-faint); margin: 0 48px; }
+    .bio { display: grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 64px 48px; }
+    .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); padding-top: 5px; }
+    .bio-text { font-size: 18px; line-height: 1.8; color: #2a2018; max-width: 680px; }
+    .bio-text p { margin-bottom: 1.3em; }
+    .bio-text p:last-child { margin-bottom: 0; font-style: italic; color: var(--brown); }
+    .work { padding: 48px 48px 0; }
+    .work-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+    .tile { position: relative; cursor: pointer; overflow: hidden; background: var(--ink); aspect-ratio: 16/10; }
+    .tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.05); transition: transform 0.5s ease, filter 0.3s ease; }
+    .tile:hover img { transform: scale(1.04); filter: grayscale(100%) contrast(1.1) brightness(0.4); }
+    .tile-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
+    .tile:hover .tile-overlay { opacity: 1; }
+    .tile-title { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--fluoro); line-height: 1.15; margin-bottom: 4px; }
+    .tile-sub { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,255,0,0.65); }
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(20,16,12,0.92); z-index: 1000; align-items: center; justify-content: center; }
+    .modal-backdrop.open { display: flex; }
+    .modal { width: 90%; max-width: 900px; position: relative; }
+    .modal-close { position: absolute; top: -44px; right: 0; background: none; border: none; color: var(--cream); font-family: var(--body); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; }
+    .modal-close:hover { opacity: 1; }
+    .modal-label { color: var(--cream); font-family: var(--serif); font-size: 15px; font-style: italic; opacity: 0.6; margin-bottom: 12px; }
+    .modal-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
+    .modal-video.vertical { padding-bottom: 75%; }
+    .modal-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+    .unpublished { margin: 3px 0 0; padding: 28px 48px; background: var(--cream-dark); border-top: 0.5px solid var(--ink-faint); }
+    .unpublished p { font-family: var(--serif); font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--ink); line-height: 1.4; }
+    .unpublished strong { background: var(--fluoro); color: var(--ink); font-style: normal; padding: 0 5px; }
+    .contact { display: grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 64px 48px 56px; border-top: 0.5px solid var(--ink-faint); margin-top: 64px; }
+    .contact-info { display: flex; flex-direction: column; gap: 6px; font-size: 17px; }
+    .contact-info a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--fluoro); display: inline-block; line-height: 1.3; transition: color 0.2s; }
+    .contact-info a:hover { color: var(--brown); }
+    .contact-availability { margin-top: 16px; font-size: 13px; color: var(--ink-light); line-height: 1.8; }
+    footer { border-top: 0.5px solid var(--ink-faint); padding: 20px 48px; display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-light); letter-spacing: 0.06em; }
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; } .nav-links { gap: 18px; }
+      .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; min-height: auto; }
+      .bio { grid-template-columns: 1fr; padding: 40px 24px; gap: 16px; }
+      .work { padding: 32px 24px 0; } .work-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
+      .divider { margin: 0 24px; } .unpublished { padding: 24px; }
+      .contact { grid-template-columns: 1fr; padding: 40px 24px; gap: 20px; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 4px; }
+    }
+    @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="#">Garrett Crabb</a>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-available">Available</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div>
+    <h1 class="hero-title">Producer.<br><em>New York.</em><br>15 years.</h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-role">Special Ops &amp; Head of Production</p>
+    <p class="hero-tagline">The person who figures out what everyone else said couldn't be done.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="bio" id="about">
+  <div class="section-label">About</div>
+  <div class="bio-text">
+    <p>Garrett Crabb is a producer with fifteen years of experience turning ideas into finished work — across brand campaigns, product launches, competitive work, and everything in between.</p>
+    <p>Trained as a painter at MICA, he came to production not through design but through a genuine love of the process: the problem-solving, the collaboration, the hidden labor of making something difficult look inevitable.</p>
+    <p>He's worked at Ogilvy, Friendshop, and Something Different, where for nearly a decade he's served as Special Ops and Head of Production.</p>
+    <p>The most interesting stories about this work are the ones I can't tell you — the pivots, the deals, the last-minute ingenuity that made something possible that probably shouldn't have been. Every project has a story. Most of them can't be published.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="work" id="work">
+  <div class="work-header"><span class="section-label">Selected Work</span></div>
+  <div class="work-grid">
+    <div class="tile" onclick="openModal('Monsters: Salon','https://player.vimeo.com/video/1185686070?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Salon.jpg" alt="Monsters: Salon"><div class="tile-overlay"><div class="tile-title">Monsters: Salon</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('History','https://player.vimeo.com/video/1185682868?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="History.jpg" alt="History"><div class="tile-overlay"><div class="tile-title">History</div><div class="tile-sub">VFX</div></div></div>
+    <div class="tile" onclick="openModal('Everyday Neo','https://player.vimeo.com/video/1185650309?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Everyday_Neo.jpg" alt="Everyday Neo"><div class="tile-overlay"><div class="tile-title">Everyday Neo</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('HPE Discover','https://player.vimeo.com/video/1185681923?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="HPE_Discover.jpg" alt="HPE Discover"><div class="tile-overlay"><div class="tile-title">HPE Discover</div><div class="tile-sub">Brand Platform</div></div></div>
+    <div class="tile" onclick="openModal('Island','https://player.vimeo.com/video/1185648266?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Island.jpg" alt="Island"><div class="tile-overlay"><div class="tile-title">Island</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Montecito Bank &amp; Trust Anthem','https://player.vimeo.com/video/1185683691?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="MBT_Anthem.jpg" alt="MBT Anthem"><div class="tile-overlay"><div class="tile-title">MBT Anthem</div><div class="tile-sub">Brand Film</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: BBQ','https://player.vimeo.com/video/1185688556?h=48b534e38e&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="BBQ.jpg" alt="Monsters: BBQ"><div class="tile-overlay"><div class="tile-title">Monsters: BBQ</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Genmoji','https://player.vimeo.com/video/1185654043?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Genmoji.jpg" alt="Genmoji"><div class="tile-overlay"><div class="tile-title">Genmoji</div><div class="tile-sub">Product</div></div></div>
+    <div class="tile" onclick="openModal('Locked Up for the Holidays','https://player.vimeo.com/video/1185689810?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Locked_Up_for_the_Holidays.jpg" alt="Locked Up for the Holidays"><div class="tile-overlay"><div class="tile-title">Locked Up for the Holidays</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('Holes','https://player.vimeo.com/video/1185678932?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Holes.jpg" alt="Holes"><div class="tile-overlay"><div class="tile-title">Holes</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Paladin','https://player.vimeo.com/video/1185679660?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Paladin.jpg" alt="Paladin"><div class="tile-overlay"><div class="tile-title">Paladin</div><div class="tile-sub">VFX</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Train','https://player.vimeo.com/video/1185687491?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Train.jpg" alt="Monsters: Train"><div class="tile-overlay"><div class="tile-title">Monsters: Train</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Dad','https://player.vimeo.com/video/1185652203?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Dad.jpg" alt="Dad"><div class="tile-overlay"><div class="tile-title">Dad</div><div class="tile-sub">Emotional</div></div></div>
+    <div class="tile" onclick="openModal('Official','https://player.vimeo.com/video/1185643302?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Official.jpg" alt="Official"><div class="tile-overlay"><div class="tile-title">Official</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Spokesperson: Everything','https://player.vimeo.com/video/1185922456?h=757e48f373&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum_101-Everything.jpg" alt="Spokesperson: Everything"><div class="tile-overlay"><div class="tile-title">Spokesperson: Everything</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('Practice Makes Perfect','https://player.vimeo.com/video/1185677842?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Practice_Makes_Perfect.jpg" alt="Practice Makes Perfect"><div class="tile-overlay"><div class="tile-title">Practice Makes Perfect</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Charades','https://player.vimeo.com/video/1185688234?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Charades.jpg" alt="Monsters: Charades"><div class="tile-overlay"><div class="tile-title">Monsters: Charades</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Daily Complications','https://player.vimeo.com/video/1185924437?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Daily_Complications.jpg" alt="Daily Complications"><div class="tile-overlay"><div class="tile-title">Daily Complications</div><div class="tile-sub">Product</div></div></div>
+    <div class="tile" onclick="openModal('You','https://player.vimeo.com/video/1185680226?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="You.jpg" alt="You"><div class="tile-overlay"><div class="tile-title">You</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('Spectrum 101: Math','https://player.vimeo.com/video/1185691261?h=30cb891a93&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum_101-Math.jpg" alt="Spectrum 101: Math"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Math</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Pied Piper','https://player.vimeo.com/video/1185680994?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Pied_Piper.jpg" alt="Pied Piper"><div class="tile-overlay"><div class="tile-title">Pied Piper</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Poker Night','https://player.vimeo.com/video/1185689323?h=df95dd16a1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Poker_Night.jpg" alt="Monsters: Poker Night"><div class="tile-overlay"><div class="tile-title">Monsters: Poker Night</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Spectrum 101: Get It','https://player.vimeo.com/video/1185692173?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum_101-Get_It.jpg" alt="Spectrum 101: Get It"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Get It</div><div class="tile-sub">Comedy</div></div></div>
+    <div class="tile" onclick="openModal('Spokesperson: Complicated','https://player.vimeo.com/video/1185930715?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum_Spokesperson-Complicated.jpg" alt="Spokesperson: Complicated"><div class="tile-overlay"><div class="tile-title">Spokesperson: Complicated</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('Toys','https://player.vimeo.com/video/1185926342?h=d738bf5f4d&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Toys.jpg" alt="Toys"><div class="tile-overlay"><div class="tile-title">Toys</div><div class="tile-sub">Brand</div></div></div>
+  </div>
+</section>
+
+<div class="unpublished">
+  <p>Every project has a story. <strong>Most of them can't be published.</strong></p>
+</div>
+
+<section class="contact" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-info">
+    <a href="mailto:garrettcrabb@gmail.com">garrettcrabb@gmail.com</a>
+    <a href="https://www.linkedin.com/in/garrett-crabb/" target="_blank" rel="noopener">LinkedIn</a>
+    <p class="contact-availability">Available for freelance &amp; full-time.<br>New York &nbsp;·&nbsp; Remote &nbsp;·&nbsp; Mexico City</p>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Garrett Crabb</span>
+  <span>garrettcrabb.com</span>
+</footer>
+
+<div class="modal-backdrop" id="modal" onclick="handleBackdropClick(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">Close ✕</button>
+    <div class="modal-label" id="modal-label"></div>
+    <div class="modal-video" id="modal-video"></div>
+  </div>
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+  function openModal(title, src, isVertical) {
+    document.getElementById('modal-label').textContent = title;
+    var v = document.getElementById('modal-video');
+    v.className = 'modal-video' + (isVertical ? ' vertical' : '');
+    v.innerHTML = '<iframe src="' + src + '&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.getElementById('modal-video').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  function handleBackdropClick(e) {
+    if (e.target === document.getElementById('modal')) closeModal();
+  }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
