@@ -81,6 +81,11 @@
     .footer-left { display: flex; align-items: center; gap: 16px; }
     .footer-mark { opacity: 0.4; cursor: default; display: block; }
 
+    /* Hide ink strokes until JS initializes — .js-ready class added by script */
+    #hero-drawing:not(.js-ready) *, #footer-mark:not(.js-ready) * {
+      stroke-dasharray: 9999 !important;
+      stroke-dashoffset: 9999 !important;
+    }
     @media (max-width: 768px) {
       nav { padding: 18px 24px; } .nav-links { gap: 18px; }
       .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; min-height: auto; }
@@ -305,12 +310,14 @@
     drawEls(interior, blankBeat);
   }
 
-  // Draw on load — pre-hide first to prevent initial artifacts
+  // Draw on load — add js-ready first to release CSS hold, then animate
   window.addEventListener('load', function() {
-    preHide(document.getElementById('hero-drawing'));
-    preHide(document.getElementById('footer-mark'));
-    animateDrawing(document.getElementById('hero-drawing'));
-    animateDrawing(document.getElementById('footer-mark'));
+    var hero = document.getElementById('hero-drawing');
+    var mark = document.getElementById('footer-mark');
+    hero.classList.add('js-ready');
+    mark.classList.add('js-ready');
+    animateDrawing(hero);
+    animateDrawing(mark);
   });
 
   // Redraw on hover — interior blanks first, then redraws
