@@ -18,34 +18,46 @@
     }
     html { scroll-behavior: smooth; }
     body { background: var(--cream); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
     nav { position: sticky; top: 0; z-index: 100; background: var(--cream); display: flex; justify-content: space-between; align-items: baseline; padding: 22px 48px 18px; border-bottom: 0.5px solid var(--ink-faint); }
     .nav-name { font-family: var(--serif); font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; color: var(--ink); }
     .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
     .nav-links a { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--ink); }
     .nav-available { background: var(--ink) !important; color: var(--fluoro) !important; padding: 4px 12px !important; }
+
     .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 80px 48px 64px; align-items: end; min-height: 52vh; }
     .hero-title { font-family: var(--serif); font-size: clamp(52px, 7vw, 88px); font-weight: 400; line-height: 0.9; letter-spacing: -0.02em; }
     .hero-title em { font-style: italic; color: var(--brown); }
-    .hero-right { display: flex; flex-direction: column; gap: 20px; padding-bottom: 8px; }
+    .hero-right { display: flex; flex-direction: column; gap: 20px; padding-bottom: 8px; justify-content: flex-end; }
     .hero-role { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); }
     .hero-tagline { font-family: var(--body); font-size: 20px; font-style: italic; color: var(--brown); line-height: 1.5; border-left: 2.5px solid var(--fluoro); padding-left: 18px; }
+
+    /* ── HERO DRAWING — horizontal, top of right column ── */
+    .hero-drawing-wrap {
+      width: 100%;
+      opacity: 0.38;
+      cursor: default;
+      margin-bottom: 8px;
+    }
+
     .divider { height: 0.5px; background: var(--ink-faint); margin: 0 48px; }
     .bio { display: grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 64px 48px; }
     .section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-light); padding-top: 5px; }
     .bio-text { font-size: 18px; line-height: 1.8; color: #2a2018; max-width: 680px; }
     .bio-text p { margin-bottom: 1.3em; }
     .bio-text p:last-child { margin-bottom: 0; font-style: italic; color: var(--brown); }
+
     .work { padding: 48px 48px 0; }
-    .work-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; }
+    .work-header { margin-bottom: 24px; }
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
     .tile { position: relative; cursor: pointer; overflow: hidden; background: var(--ink); aspect-ratio: 16/10; }
     .tile img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%) contrast(1.05); transition: transform 0.5s ease, filter 0.3s ease; }
     .tile:hover img { transform: scale(1.04); filter: grayscale(100%) contrast(1.1) brightness(0.4); }
     .tile-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
     .tile:hover .tile-overlay { opacity: 1; }
-    .tile-title { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--fluoro); line-height: 1.15; margin-bottom: 4px; }
-    .tile-sub { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(212,255,0,0.65); }
+    .tile-title { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--fluoro); line-height: 1.15; }
+
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(20,16,12,0.92); z-index: 1000; align-items: center; justify-content: center; }
     .modal-backdrop.open { display: flex; }
     .modal { width: 90%; max-width: 900px; position: relative; }
@@ -53,25 +65,32 @@
     .modal-close:hover { opacity: 1; }
     .modal-label { color: var(--cream); font-family: var(--serif); font-size: 15px; font-style: italic; opacity: 0.6; margin-bottom: 12px; }
     .modal-video { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
-    .modal-video.vertical { padding-bottom: 75%; }
     .modal-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
     .unpublished { margin: 3px 0 0; padding: 28px 48px; background: var(--cream-dark); border-top: 0.5px solid var(--ink-faint); }
     .unpublished p { font-family: var(--serif); font-size: clamp(18px, 2.5vw, 26px); font-style: italic; color: var(--ink); line-height: 1.4; }
     .unpublished strong { background: var(--fluoro); color: var(--ink); font-style: normal; padding: 0 5px; }
+
     .contact { display: grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 64px 48px 56px; border-top: 0.5px solid var(--ink-faint); margin-top: 64px; }
     .contact-info { display: flex; flex-direction: column; gap: 6px; font-size: 17px; }
     .contact-info a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--fluoro); display: inline-block; line-height: 1.3; transition: color 0.2s; }
     .contact-info a:hover { color: var(--brown); }
     .contact-availability { margin-top: 16px; font-size: 13px; color: var(--ink-light); line-height: 1.8; }
-    footer { border-top: 0.5px solid var(--ink-faint); padding: 20px 48px; display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-light); letter-spacing: 0.06em; }
+
+    footer { border-top: 0.5px solid var(--ink-faint); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-light); letter-spacing: 0.06em; }
+    .footer-left { display: flex; align-items: center; gap: 16px; }
+    .footer-mark { opacity: 0.4; cursor: default; display: block; }
+
     @media (max-width: 768px) {
       nav { padding: 18px 24px; } .nav-links { gap: 18px; }
       .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; min-height: auto; }
+      .hero-drawing-wrap { display: none; }
       .bio { grid-template-columns: 1fr; padding: 40px 24px; gap: 16px; }
       .work { padding: 32px 24px 0; } .work-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
-      .divider { margin: 0 24px; } .unpublished { padding: 24px; }
+      .divider { margin: 0 24px; }
+      .unpublished { padding: 24px; }
       .contact { grid-template-columns: 1fr; padding: 40px 24px; gap: 20px; }
-      footer { padding: 16px 24px; flex-direction: column; gap: 4px; }
+      footer { padding: 16px 24px; flex-direction: column; gap: 4px; align-items: flex-start; }
     }
     @media (max-width: 480px) { .work-grid { grid-template-columns: 1fr; } }
   </style>
@@ -93,8 +112,50 @@
     <h1 class="hero-title">Producer.<br><em>New York.</em><br>15 years.</h1>
   </div>
   <div class="hero-right">
-    <p class="hero-role">Special Ops &amp; Head of Production</p>
-    <p class="hero-tagline">The person who figures out what everyone else said couldn't be done.</p>
+
+    <!-- INK DRAWING — horizontal, top of right column, links to Instagram -->
+    <div class="hero-drawing-wrap">
+      <a href="https://www.instagram.com/gcrabb" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
+      <svg id="hero-drawing" width="100%" viewBox="0 0 340 90" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1a1612" stroke-linecap="round" stroke-linejoin="round">
+        <!-- outer frame -->
+        <rect x="3" y="3" width="334" height="84" rx="0.5" stroke-width="1" style="--l:840"/>
+        <!-- window left — recurring motif, cross-divided -->
+        <rect x="12" y="10" width="52" height="38" rx="0.5" stroke-width="0.7" style="--l:182; --d:0.5s; --e:0.8s"/>
+        <line x1="38" y1="10" x2="38" y2="48" stroke-width="0.5" style="--l:38; --d:0.25s; --e:1.2s"/>
+        <line x1="12" y1="29" x2="64" y2="29" stroke-width="0.5" style="--l:52; --d:0.25s; --e:1.38s"/>
+        <!-- cross-hatch inside window -->
+        <line x1="14" y1="12" x2="36" y2="27" stroke-width="0.35" style="--l:28; --d:0.2s; --e:1.52s"/>
+        <line x1="20" y1="10" x2="36" y2="20" stroke-width="0.35" style="--l:20; --d:0.18s; --e:1.65s"/>
+        <!-- horizon line across middle -->
+        <path d="M3,52 Q60,47 120,52 Q180,57 240,51 Q290,46 337,52" stroke-width="0.6" style="--l:340; --d:0.55s; --e:1.78s"/>
+        <!-- small figure left of center -->
+        <path d="M88,38 Q84,32 87,27 Q92,23 97,27 Q100,33 96,38" stroke-width="0.65" style="--l:38; --d:0.35s; --e:2.25s"/>
+        <line x1="92" y1="38" x2="92" y2="52" stroke-width="0.6" style="--l:14; --d:0.18s; --e:2.52s"/>
+        <path d="M86,45 L92,41 L98,45" stroke-width="0.55" style="--l:14; --d:0.18s; --e:2.62s"/>
+        <path d="M89,52 L86,62" stroke-width="0.55" style="--l:11; --d:0.14s; --e:2.72s"/>
+        <path d="M95,52 L98,62" stroke-width="0.55" style="--l:11; --d:0.14s; --e:2.8s"/>
+        <!-- candle center -->
+        <rect x="136" y="32" width="8" height="20" rx="0.5" stroke-width="0.6" style="--l:58; --d:0.32s; --e:2.88s"/>
+        <path d="M140,30 Q141,25 141,22 Q142,25 143,30" stroke-width="0.55" style="--l:16; --d:0.2s; --e:3.1s"/>
+        <!-- organic blob shape right of center -->
+        <path d="M178,14 Q194,8 210,13 Q220,20 215,32 Q206,40 192,36 Q178,30 180,20 Q182,14 190,16" stroke-width="0.7" style="--l:100; --d:0.55s; --e:3.22s"/>
+        <!-- hatching inside blob -->
+        <line x1="183" y1="18" x2="210" y2="28" stroke-width="0.35" style="--l:30; --d:0.2s; --e:3.68s"/>
+        <line x1="183" y1="24" x2="208" y2="34" stroke-width="0.35" style="--l:28; --d:0.2s; --e:3.8s"/>
+        <line x1="186" y1="30" x2="207" y2="38" stroke-width="0.35" style="--l:24; --d:0.18s; --e:3.92s"/>
+        <!-- second window far right -->
+        <rect x="268" y="12" width="44" height="32" rx="0.5" stroke-width="0.7" style="--l:154; --d:0.45s; --e:4.02s"/>
+        <line x1="290" y1="12" x2="290" y2="44" stroke-width="0.5" style="--l:32; --d:0.22s; --e:4.38s"/>
+        <line x1="268" y1="28" x2="312" y2="28" stroke-width="0.5" style="--l:44; --d:0.22s; --e:4.52s"/>
+        <!-- wavy ground lines -->
+        <path d="M3,66 Q50,61 110,66 Q170,71 230,65 Q280,60 337,66" stroke-width="0.5" style="--l:340; --d:0.45s; --e:4.65s"/>
+        <path d="M3,78 Q55,73 118,78 Q178,83 240,77 Q285,73 337,78" stroke-width="0.5" style="--l:340; --d:0.45s; --e:4.98s"/>
+      </svg>
+      </a>
+    </div>
+
+    <p class="hero-role">Producer &amp; Operations</p>
+    <p class="hero-tagline">Fifteen years of turning ideas into finished work.</p>
   </div>
 </section>
 
@@ -115,31 +176,31 @@
 <section class="work" id="work">
   <div class="work-header"><span class="section-label">Selected Work</span></div>
   <div class="work-grid">
-    <div class="tile" onclick="openModal('Monsters: Salon','https://player.vimeo.com/video/1185686070?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Salon.jpg" alt="Monsters: Salon"><div class="tile-overlay"><div class="tile-title">Monsters: Salon</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('History','https://player.vimeo.com/video/1185682868?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="History.jpg" alt="History"><div class="tile-overlay"><div class="tile-title">History</div><div class="tile-sub">VFX</div></div></div>
-    <div class="tile" onclick="openModal('Everyday Neo','https://player.vimeo.com/video/1185650309?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Everyday Neo.jpg" alt="Everyday Neo"><div class="tile-overlay"><div class="tile-title">Everyday Neo</div><div class="tile-sub">Brand</div></div></div>
-    <div class="tile" onclick="openModal('HPE Discover','https://player.vimeo.com/video/1185681923?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="HPE Discover.jpg" alt="HPE Discover"><div class="tile-overlay"><div class="tile-title">HPE Discover</div><div class="tile-sub">Brand Platform</div></div></div>
-    <div class="tile" onclick="openModal('Island','https://player.vimeo.com/video/1185648266?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Island.jpg" alt="Island"><div class="tile-overlay"><div class="tile-title">Island</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Montecito Bank &amp; Trust Anthem','https://player.vimeo.com/video/1185683691?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="MBT Anthem.jpg" alt="MBT Anthem"><div class="tile-overlay"><div class="tile-title">MBT Anthem</div><div class="tile-sub">Brand Film</div></div></div>
-    <div class="tile" onclick="openModal('Monsters: BBQ','https://player.vimeo.com/video/1185688556?h=48b534e38e&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="BBQ.jpg" alt="Monsters: BBQ"><div class="tile-overlay"><div class="tile-title">Monsters: BBQ</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Genmoji','https://player.vimeo.com/video/1185654043?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Genmoji.jpg" alt="Genmoji"><div class="tile-overlay"><div class="tile-title">Genmoji</div><div class="tile-sub">Product</div></div></div>
-    <div class="tile" onclick="openModal('Locked Up for the Holidays','https://player.vimeo.com/video/1185689810?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Locked Up for the Holidays.jpg" alt="Locked Up for the Holidays"><div class="tile-overlay"><div class="tile-title">Locked Up for the Holidays</div><div class="tile-sub">Brand</div></div></div>
-    <div class="tile" onclick="openModal('Holes','https://player.vimeo.com/video/1185678932?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Holes.jpg" alt="Holes"><div class="tile-overlay"><div class="tile-title">Holes</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Paladin','https://player.vimeo.com/video/1185679660?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Paladin.jpg" alt="Paladin"><div class="tile-overlay"><div class="tile-title">Paladin</div><div class="tile-sub">VFX</div></div></div>
-    <div class="tile" onclick="openModal('Monsters: Train','https://player.vimeo.com/video/1185687491?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Train.jpg" alt="Monsters: Train"><div class="tile-overlay"><div class="tile-title">Monsters: Train</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Dad','https://player.vimeo.com/video/1185652203?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Dad.jpg" alt="Dad"><div class="tile-overlay"><div class="tile-title">Dad</div><div class="tile-sub">Emotional</div></div></div>
-    <div class="tile" onclick="openModal('Official','https://player.vimeo.com/video/1185643302?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Official.jpg" alt="Official"><div class="tile-overlay"><div class="tile-title">Official</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Spokesperson: Everything','https://player.vimeo.com/video/1185922456?h=757e48f373&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum 101-Everything.jpg" alt="Spokesperson: Everything"><div class="tile-overlay"><div class="tile-title">Spokesperson: Everything</div><div class="tile-sub">Brand</div></div></div>
-    <div class="tile" onclick="openModal('Practice Makes Perfect','https://player.vimeo.com/video/1185677842?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Practice Makes Perfect.jpg" alt="Practice Makes Perfect"><div class="tile-overlay"><div class="tile-title">Practice Makes Perfect</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Monsters: Charades','https://player.vimeo.com/video/1185688234?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Charades.jpg" alt="Monsters: Charades"><div class="tile-overlay"><div class="tile-title">Monsters: Charades</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Daily Complications','https://player.vimeo.com/video/1185924437?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Daily Complications.jpg" alt="Daily Complications"><div class="tile-overlay"><div class="tile-title">Daily Complications</div><div class="tile-sub">Product</div></div></div>
-    <div class="tile" onclick="openModal('You','https://player.vimeo.com/video/1185680226?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="You.jpg" alt="You"><div class="tile-overlay"><div class="tile-title">You</div><div class="tile-sub">Brand</div></div></div>
-    <div class="tile" onclick="openModal('Spectrum 101: Math','https://player.vimeo.com/video/1185691261?h=30cb891a93&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum 101-Math.jpg" alt="Spectrum 101: Math"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Math</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Pied Piper','https://player.vimeo.com/video/1185680994?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Pied Piper.jpg" alt="Pied Piper"><div class="tile-overlay"><div class="tile-title">Pied Piper</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Monsters: Poker Night','https://player.vimeo.com/video/1185689323?h=df95dd16a1&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',true)"><img src="Poker Night.jpg" alt="Monsters: Poker Night"><div class="tile-overlay"><div class="tile-title">Monsters: Poker Night</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Spectrum 101: Get It','https://player.vimeo.com/video/1185692173?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum 101-Get It.jpg" alt="Spectrum 101: Get It"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Get It</div><div class="tile-sub">Comedy</div></div></div>
-    <div class="tile" onclick="openModal('Spokesperson: Complicated','https://player.vimeo.com/video/1185930715?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Spectrum Spokesperson-Complicated.jpg" alt="Spokesperson: Complicated"><div class="tile-overlay"><div class="tile-title">Spokesperson: Complicated</div><div class="tile-sub">Brand</div></div></div>
-    <div class="tile" onclick="openModal('Toys','https://player.vimeo.com/video/1185926342?h=d738bf5f4d&title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479',false)"><img src="Toys.jpg" alt="Toys"><div class="tile-overlay"><div class="tile-title">Toys</div><div class="tile-sub">Brand</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Salon','https://player.vimeo.com/video/1185686070?h=d685efc756&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Salon.jpg" alt="Monsters: Salon"><div class="tile-overlay"><div class="tile-title">Monsters: Salon</div></div></div>
+    <div class="tile" onclick="openModal('History','https://player.vimeo.com/video/1185682868?h=69cde0e38f&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="History.jpg" alt="History"><div class="tile-overlay"><div class="tile-title">History</div></div></div>
+    <div class="tile" onclick="openModal('Everyday Neo','https://player.vimeo.com/video/1185650309?h=b777786f18&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Everyday_Neo.jpg" alt="Everyday Neo"><div class="tile-overlay"><div class="tile-title">Everyday Neo</div></div></div>
+    <div class="tile" onclick="openModal('HPE Discover','https://player.vimeo.com/video/1185681923?h=189d8061e5&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="HPE Discover.jpg" alt="HPE Discover"><div class="tile-overlay"><div class="tile-title">HPE Discover</div></div></div>
+    <div class="tile" onclick="openModal('Island','https://player.vimeo.com/video/1185648266?h=f61d462193&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Island.jpg" alt="Island"><div class="tile-overlay"><div class="tile-title">Island</div></div></div>
+    <div class="tile" onclick="openModal('Montecito Bank &amp; Trust Anthem','https://player.vimeo.com/video/1185683691?h=e2a73b5f2c&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="MBT Anthem.jpg" alt="MBT Anthem"><div class="tile-overlay"><div class="tile-title">MBT Anthem</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: BBQ','https://player.vimeo.com/video/1185688556?h=48b534e38e&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="BBQ.jpg" alt="Monsters: BBQ"><div class="tile-overlay"><div class="tile-title">Monsters: BBQ</div></div></div>
+    <div class="tile" onclick="openModal('Genmoji','https://player.vimeo.com/video/1185654043?h=cd41d41b6b&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Genmoji.jpg" alt="Genmoji"><div class="tile-overlay"><div class="tile-title">Genmoji</div></div></div>
+    <div class="tile" onclick="openModal('Locked Up for the Holidays','https://player.vimeo.com/video/1185689810?h=d20721ae22&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Locked Up for the Holidays.jpg" alt="Locked Up for the Holidays"><div class="tile-overlay"><div class="tile-title">Locked Up for the Holidays</div></div></div>
+    <div class="tile" onclick="openModal('Holes','https://player.vimeo.com/video/1185678932?h=47b2f6b373&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Holes.jpg" alt="Holes"><div class="tile-overlay"><div class="tile-title">Holes</div></div></div>
+    <div class="tile" onclick="openModal('Paladin','https://player.vimeo.com/video/1185679660?h=bfb75fd760&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Paladin.jpg" alt="Paladin"><div class="tile-overlay"><div class="tile-title">Paladin</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Train','https://player.vimeo.com/video/1185687491?h=0b3ebe6ce4&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Train.jpg" alt="Monsters: Train"><div class="tile-overlay"><div class="tile-title">Monsters: Train</div></div></div>
+    <div class="tile" onclick="openModal('Dad','https://player.vimeo.com/video/1185652203?h=624616b161&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Dad.jpg" alt="Dad"><div class="tile-overlay"><div class="tile-title">Dad</div></div></div>
+    <div class="tile" onclick="openModal('Official','https://player.vimeo.com/video/1185643302?h=f14cc6f4a3&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Official.jpg" alt="Official"><div class="tile-overlay"><div class="tile-title">Official</div></div></div>
+    <div class="tile" onclick="openModal('Spokesperson: Everything','https://player.vimeo.com/video/1185922456?h=757e48f373&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Spectrum 101-Everything.jpg" alt="Spokesperson: Everything"><div class="tile-overlay"><div class="tile-title">Spokesperson: Everything</div></div></div>
+    <div class="tile" onclick="openModal('Practice Makes Perfect','https://player.vimeo.com/video/1185677842?h=9f658d0908&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Practice Makes Perfect.jpg" alt="Practice Makes Perfect"><div class="tile-overlay"><div class="tile-title">Practice Makes Perfect</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Charades','https://player.vimeo.com/video/1185983075?h=a10a9b8b3b&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Charades.jpg" alt="Monsters: Charades"><div class="tile-overlay"><div class="tile-title">Monsters: Charades</div></div></div>
+    <div class="tile" onclick="openModal('Daily Complications','https://player.vimeo.com/video/1185924437?h=9556e7ff35&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Daily Complications.jpg" alt="Daily Complications"><div class="tile-overlay"><div class="tile-title">Daily Complications</div></div></div>
+    <div class="tile" onclick="openModal('You','https://player.vimeo.com/video/1185680226?h=7c313e4ab1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="You.jpg" alt="You"><div class="tile-overlay"><div class="tile-title">You</div></div></div>
+    <div class="tile" onclick="openModal('Spectrum 101: Math','https://player.vimeo.com/video/1185691261?h=30cb891a93&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Spectrum 101-Math.jpg" alt="Spectrum 101: Math"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Math</div></div></div>
+    <div class="tile" onclick="openModal('Pied Piper','https://player.vimeo.com/video/1185680994?h=0d7e2b6ac8&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Pied Piper.jpg" alt="Pied Piper"><div class="tile-overlay"><div class="tile-title">Pied Piper</div></div></div>
+    <div class="tile" onclick="openModal('Monsters: Poker Night','https://player.vimeo.com/video/1185689323?h=df95dd16a1&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Poker Night.jpg" alt="Monsters: Poker Night"><div class="tile-overlay"><div class="tile-title">Monsters: Poker Night</div></div></div>
+    <div class="tile" onclick="openModal('Spectrum 101: Get It','https://player.vimeo.com/video/1185692173?h=8b12ca8b77&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Spectrum 101-Get It.jpg" alt="Spectrum 101: Get It"><div class="tile-overlay"><div class="tile-title">Spectrum 101: Get It</div></div></div>
+    <div class="tile" onclick="openModal('Spokesperson: Complicated','https://player.vimeo.com/video/1185930715?h=fb92cc4f7e&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Spectrum Spokesperson-Complicated.jpg" alt="Spokesperson: Complicated"><div class="tile-overlay"><div class="tile-title">Spokesperson: Complicated</div></div></div>
+    <div class="tile" onclick="openModal('Toys','https://player.vimeo.com/video/1185926342?h=d738bf5f4d&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1')"><img src="Toys.jpg" alt="Toys"><div class="tile-overlay"><div class="tile-title">Toys</div></div></div>
   </div>
 </section>
 
@@ -157,7 +218,18 @@
 </section>
 
 <footer>
-  <span>© 2026 Garrett Crabb</span>
+  <div class="footer-left">
+    <span>© 2026 Garrett Crabb</span>
+    <svg id="footer-mark" class="footer-mark" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1a1612" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="26" height="26" rx="0.5" stroke-width="0.9" class="sd" style="--l:106"/>
+      <line x1="15" y1="2" x2="15" y2="28" stroke-width="0.55" class="sd" style="--l:26; --d:0.25s; --e:0.8s"/>
+      <line x1="2" y1="15" x2="28" y2="15" stroke-width="0.55" class="sd" style="--l:26; --d:0.25s; --e:0.95s"/>
+      <circle cx="8.5" cy="8.5" r="2.5" stroke-width="0.65" class="sd" style="--l:16; --d:0.26s; --e:1.1s"/>
+      <path d="M18,7 Q22,3 26,7 Q22,12 18,7" stroke-width="0.65" class="sd" style="--l:24; --d:0.28s; --e:1.28s"/>
+      <path d="M4,22 Q7,19 10,22" stroke-width="0.65" class="sd" style="--l:12; --d:0.18s; --e:1.48s"/>
+      <path d="M19,21 L21,18 L23,21 L21,24 Z" stroke-width="0.55" class="sd" style="--l:20; --d:0.24s; --e:1.58s"/>
+    </svg>
+  </div>
   <span>garrettcrabb.com</span>
 </footer>
 
@@ -171,11 +243,44 @@
 
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
-  function openModal(title, src, isVertical) {
+  // Robust draw-on animation using Web Animations API
+  function animateDrawing(svg) {
+    var els = svg.querySelectorAll('rect, line, circle, path, polyline');
+    els.forEach(function(el) {
+      var len = parseFloat(el.style.getPropertyValue('--l')) || 300;
+      var dur = (parseFloat(el.style.getPropertyValue('--d')) || 0.5) * 1000;
+      var delay = (parseFloat(el.style.getPropertyValue('--e')) || 0) * 1000;
+      // Cancel any running animations on this element
+      el.getAnimations().forEach(function(a) { a.cancel(); });
+      // Reset to blank
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+      // Redraw from scratch
+      el.animate(
+        [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+        { duration: dur, delay: delay, fill: 'forwards', easing: 'ease-out' }
+      );
+    });
+  }
+
+  // Draw on load
+  window.addEventListener('load', function() {
+    animateDrawing(document.getElementById('hero-drawing'));
+    animateDrawing(document.getElementById('footer-mark'));
+  });
+
+  // Redraw on hover
+  document.getElementById('hero-drawing').addEventListener('mouseenter', function() {
+    animateDrawing(this);
+  });
+  document.getElementById('footer-mark').addEventListener('mouseenter', function() {
+    animateDrawing(this);
+  });
+
+  function openModal(title, src) {
     document.getElementById('modal-label').textContent = title;
     var v = document.getElementById('modal-video');
-    v.className = 'modal-video' + (isVertical ? ' vertical' : '');
-    v.innerHTML = '<iframe src="' + src + '&autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    v.innerHTML = '<iframe src="' + src + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     document.getElementById('modal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
