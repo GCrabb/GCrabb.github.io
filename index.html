@@ -32,8 +32,9 @@
     .hero-right { display: flex; flex-direction: column; gap: 24px; justify-content: flex-end; }
     .hero-tagline { font-family: var(--body); font-size: 20px; font-style: italic; color: var(--brown); line-height: 1.5; border-left: 2.5px solid var(--fluoro); padding-left: 18px; }
 
-    .hero-drawing-wrap { width: 100%; margin-bottom: 8px; cursor: pointer; }
-    .hero-drawing-wrap canvas { width: 100%; height: auto; display: block; opacity: 0.38; }
+    .hero-drawing-wrap { width: 100%; margin-bottom: 8px; cursor: pointer; opacity: 0.75; }
+    .hero-drawing-wrap svg { width: 100%; height: auto; display: block; }
+    .hero-drawing-wrap:not(.js-ready) svg * { stroke-dasharray: 9999; stroke-dashoffset: 9999; }
 
     .divider { height: 0.5px; background: var(--ink-faint); margin: 0 48px; }
     .bio { display: grid; grid-template-columns: 200px 1fr; gap: 56px; padding: 64px 48px; }
@@ -77,7 +78,6 @@
     @media (max-width: 768px) {
       nav { padding: 18px 24px; } .nav-links { gap: 14px; } .nav-links a { font-size: 10px; } .nav-available { padding: 3px 8px !important; }
       .hero { grid-template-columns: 1fr; padding: 48px 24px 40px; gap: 32px; min-height: auto; }
-      .hero-drawing-wrap { display: none; }
       .bio { grid-template-columns: 1fr; padding: 40px 24px; gap: 16px; }
       .work { padding: 32px 24px 0; } .work-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
       .divider { margin: 0 24px; }
@@ -106,8 +106,108 @@
   </div>
   <div class="hero-right">
     <div class="hero-drawing-wrap">
-      <a href="https://www.instagram.com/gcrabb" target="_blank" rel="noopener" style="display:block; text-decoration:none;">
-        <canvas id="hero-canvas" width="680" height="180" style="width:100%;height:auto;display:block;"></canvas>
+      <a href="https://www.instagram.com/gcrabb" target="_blank" rel="noopener" style="display:block; text-decoration:none; line-height:0;">
+        <svg id="hero-drawing" viewBox="0 0 1360 348" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#1e3a4a" stroke-linecap="round" stroke-linejoin="round" style="width:100%;height:auto;display:block;">
+          <path id="e0" d="M0,200 Q80,160 160,140 Q220,125 280,148 Q320,162 340,200" stroke-width="1.2"/>
+          <path id="e1" d="M240,200 Q320,130 420,100 Q500,78 560,110 Q600,130 620,200" stroke-width="1.4"/>
+          <path id="e2" d="M580,200 Q640,155 700,148 Q740,144 760,165 Q775,180 780,200" stroke-width="1.1"/>
+          <path id="e3" d="M900,200 Q980,130 1060,105 Q1130,85 1200,118 Q1250,140 1280,200" stroke-width="1.4"/>
+          <path id="e4" d="M1180,200 Q1240,155 1300,148 Q1340,144 1360,160" stroke-width="1.1"/>
+          <path id="e5" d="M0,248 Q200,242 400,246 Q600,250 800,244 Q1000,238 1200,243 Q1300,246 1360,244" stroke-width="1.8"/>
+          <rect id="e6" x="30" y="28" width="148" height="196" rx="2" stroke-width="2.4"/>
+          <path id="e7" d="M18,224 L190,224" stroke-width="1.8"/>
+          <line id="e8" x1="104" y1="28" x2="104" y2="224" stroke-width="1.2"/>
+          <line id="e9" x1="30" y1="128" x2="178" y2="128" stroke-width="1.2"/>
+          <path id="e10" d="M72,224 Q68,200 66,170 Q64,140 70,110 Q74,90 72,60" stroke-width="2"/>
+          <path id="e11" d="M70,160 Q56,148 44,150 Q36,152 32,160" stroke-width="1.4"/>
+          <path id="e12" d="M68,140 Q58,128 52,124 Q44,120 38,124" stroke-width="1.2"/>
+          <path id="e13" d="M70,115 Q62,106 56,100" stroke-width="1"/>
+          <path id="e14" d="M70,110 Q78,100 84,94" stroke-width="1"/>
+          <path id="e15" d="M72,80 Q66,70 62,62" stroke-width="0.8"/>
+          <path id="e16" d="M72,80 Q80,72 86,66" stroke-width="0.8"/>
+          <path id="e17" d="M72,60 Q68,50 66,42" stroke-width="0.7"/>
+          <path id="e18" d="M32,130 Q50,132 68,128 Q80,125 90,130 Q80,145 60,148 Q40,148 32,140 Z" stroke-width="0.5"/>
+          <path id="e19" d="M10,290 Q50,278 90,282 Q100,284 100,295 Q100,308 90,314 Q50,318 10,310 Z" stroke-width="1.6"/>
+          <path id="e20" d="M100,282 Q140,278 180,284 Q190,286 190,298 Q188,310 178,314 Q138,318 100,310 Q100,295 100,282" stroke-width="1.6"/>
+          <line id="e21" x1="100" y1="282" x2="100" y2="314" stroke-width="1.8"/>
+          <path id="e22" d="M20,292 Q55,288 90,291" stroke-width="0.5"/>
+          <path id="e23" d="M20,298 Q55,294 90,297" stroke-width="0.5"/>
+          <path id="e24" d="M20,304 Q55,300 90,303" stroke-width="0.5"/>
+          <path id="e25" d="M110,288 Q145,284 178,288" stroke-width="0.5"/>
+          <path id="e26" d="M110,294 Q145,290 178,294" stroke-width="0.5"/>
+          <path id="e27" d="M110,300 Q145,296 178,300" stroke-width="0.5"/>
+          <path id="e28" d="M200,248 Q260,238 320,242 Q360,244 380,252" stroke-width="1.6"/>
+          <path id="e29" d="M220,244 Q228,232 222,218 Q218,208 210,204" stroke-width="1.4"/>
+          <path id="e30" d="M222,228 Q212,222 204,220" stroke-width="0.9"/>
+          <path id="e31" d="M260,240 Q268,228 262,214" stroke-width="1.3"/>
+          <path id="e32" d="M263,225 Q272,218 278,212" stroke-width="0.8"/>
+          <path id="e33" d="M300,242 Q308,230 304,216 Q302,208 296,202" stroke-width="1.3"/>
+          <path id="e34" d="M220,248 Q260,244 310,248 Q330,250 320,260 Q280,266 240,262 Q210,258 220,248" stroke-width="0.6"/>
+          <path id="e35" d="M380,248 Q368,230 364,208 Q360,185 366,168 Q374,150 390,146 Q408,142 422,152 Q436,162 438,182 Q440,202 432,222 Q424,240 412,248 Z" stroke-width="2.2"/>
+          <path id="e36" d="M384,148 Q390,136 396,128 Q400,122 400,116 Q400,122 404,128 Q410,136 416,148" stroke-width="1.4"/>
+          <path id="e37" d="M368,248 Q390,252 412,248 Q420,252 390,258 Q362,254 368,248" stroke-width="1.2"/>
+          <path id="e38" d="M376,196 Q390,190 406,196 Q414,202 406,210 Q390,214 376,208 Q370,202 376,196" stroke-width="0.8"/>
+          <path id="e39" d="M390,190 L390,176" stroke-width="0.7"/>
+          <path id="e40" d="M390,182 Q398,178 406,182" stroke-width="0.7"/>
+          <path id="e41" d="M396,116 Q392,100 394,82 Q396,68 394,52" stroke-width="1.4"/>
+          <path id="e42" d="M394,96 Q382,86 372,82 Q364,80 358,84" stroke-width="1.2"/>
+          <path id="e43" d="M394,82 Q406,72 416,68 Q424,66 428,70" stroke-width="1.2"/>
+          <path id="e44" d="M394,68 Q384,58 378,50 Q374,44 376,38" stroke-width="1"/>
+          <path id="e45" d="M394,60 Q402,50 410,44 Q416,38 416,32" stroke-width="1"/>
+          <path id="e46" d="M358,84 Q350,76 354,68 Q362,64 370,70 Q372,78 364,82" stroke-width="0.9"/>
+          <path id="e47" d="M428,70 Q436,62 432,54 Q424,50 416,56 Q414,64 422,68" stroke-width="0.9"/>
+          <ellipse id="e48" cx="580" cy="236" rx="48" ry="12" stroke-width="1.8"/>
+          <line id="e49" x1="542" y1="240" x2="536" y2="310" stroke-width="1.5"/>
+          <line id="e50" x1="618" y1="240" x2="624" y2="310" stroke-width="1.5"/>
+          <line id="e51" x1="560" y1="244" x2="556" y2="310" stroke-width="1.2"/>
+          <line id="e52" x1="600" y1="244" x2="604" y2="310" stroke-width="1.2"/>
+          <path id="e53" d="M538,278 Q580,268 622,278" stroke-width="0.8"/>
+          <rect id="e54" x="554" y="218" width="52" height="36" rx="2" stroke-width="1.4"/>
+          <line id="e55" x1="562" y1="228" x2="598" y2="228" stroke-width="0.5"/>
+          <line id="e56" x1="562" y1="236" x2="598" y2="236" stroke-width="0.5"/>
+          <line id="e57" x1="562" y1="244" x2="598" y2="244" stroke-width="0.5"/>
+          <path id="e58" d="M760,60 L720,340" stroke-width="2.4"/>
+          <path id="e59" d="M900,60 L940,340" stroke-width="2.4"/>
+          <path id="e60" d="M830,200 L830,348" stroke-width="1.8"/>
+          <path id="e61" d="M726,160 L934,160" stroke-width="1.4"/>
+          <path id="e62" d="M734,220 Q830,210 926,220" stroke-width="1"/>
+          <rect id="e63" x="726" y="32" width="208" height="176" rx="2" stroke-width="2"/>
+          <rect id="e64" x="736" y="42" width="188" height="156" rx="1" stroke-width="0.6"/>
+          <path id="e65" d="M790,80 Q810,64 840,68 Q868,72 876,92 Q882,112 868,132 Q852,150 828,152 Q802,152 786,134 Q772,116 778,96 Q782,84 790,80" stroke-width="2"/>
+          <path id="e66" d="M828,68 Q836,52 844,42 Q852,34 856,38 Q864,44 858,56 Q852,64 844,68" stroke-width="1.6"/>
+          <path id="e67" d="M856,38 Q868,34 876,38 Q870,46 858,44" stroke-width="1.4"/>
+          <circle id="e68" cx="852" cy="46" r="4" stroke-width="1.2"/>
+          <path id="e69" d="M868,100 Q890,90 908,96 Q916,102 912,114 Q904,124 888,122 Q874,118 868,108 Q866,103 868,100" stroke-width="1.5"/>
+          <path id="e70" d="M800,152 Q792,162 786,172" stroke-width="1.2"/>
+          <path id="e71" d="M786,172 Q780,178 772,180" stroke-width="0.9"/>
+          <path id="e72" d="M786,172 Q784,180 782,186" stroke-width="0.9"/>
+          <path id="e73" d="M786,172 Q792,178 796,184" stroke-width="0.9"/>
+          <path id="e74" d="M828,152 Q828,164 826,174" stroke-width="1.2"/>
+          <path id="e75" d="M826,174 Q820,180 814,182" stroke-width="0.9"/>
+          <path id="e76" d="M826,174 Q826,182 824,188" stroke-width="0.9"/>
+          <path id="e77" d="M826,174 Q832,180 836,184" stroke-width="0.9"/>
+          <circle id="e78" cx="810" cy="100" r="6" stroke-width="0.8"/>
+          <circle id="e79" cx="832" cy="112" r="5" stroke-width="0.8"/>
+          <circle id="e80" cx="852" cy="96" r="4" stroke-width="0.8"/>
+          <path id="e81" d="M988,200 Q976,200 972,212 Q968,226 972,238 Q976,248 988,250 Q1002,250 1008,238 Q1014,224 1008,212 Q1004,200 988,200" stroke-width="1.6"/>
+          <path id="e82" d="M974,204 Q988,198 1004,204" stroke-width="1.1"/>
+          <path id="e83" d="M976,224 Q988,218 1002,224 Q1006,232 1000,240 Q988,244 976,238 Q972,232 976,224" stroke-width="0.6"/>
+          <path id="e84" d="M1020,252 Q1100,244 1180,248" stroke-width="1.3"/>
+          <path id="e85" d="M1018,248 Q1010,244 1006,250 Q1008,258 1016,256 Q1022,254 1018,248" stroke-width="1.6"/>
+          <path id="e86" d="M1268,318 Q1290,314 1312,318 Q1320,322 1290,326 Q1262,322 1268,318" stroke-width="1.6"/>
+          <path id="e87" d="M1290,318 Q1288,302 1286,290 Q1284,280 1286,272" stroke-width="1.8"/>
+          <path id="e88" d="M1278,272 Q1290,268 1302,272 Q1306,278 1290,280 Q1276,278 1278,272" stroke-width="1.4"/>
+          <rect id="e89" x="1280" y="152" width="20" height="120" rx="2" stroke-width="1.8"/>
+          <path id="e90" d="M1290,150 Q1286,138 1288,126 Q1290,116 1292,126 Q1294,136 1290,150" stroke-width="1"/>
+          <path id="e91" d="M1290,134 Q1288,128 1290,122 Q1292,128 1290,134" stroke-width="0.7"/>
+          <path id="e92" d="M1100,268 Q1120,256 1150,256 Q1176,256 1188,268 Q1196,278 1188,292 Q1172,306 1144,306 Q1116,306 1104,292 Q1096,280 1100,268" stroke-width="1.8"/>
+          <path id="e93" d="M1108,272 Q1130,266 1156,270" stroke-width="0.6"/>
+          <path id="e94" d="M1106,280 Q1130,274 1158,278" stroke-width="0.6"/>
+          <path id="e95" d="M1108,290 Q1132,284 1156,288" stroke-width="0.6"/>
+          <path id="e96" d="M1200,268 Q1220,258 1248,260 Q1264,262 1266,274 Q1264,286 1248,290 Q1224,294 1206,286 Q1196,278 1200,268" stroke-width="1.6"/>
+          <path id="e97" d="M1208,272 Q1228,266 1248,270 Q1256,276 1248,282 Q1228,286 1210,282 Q1202,278 1208,272" stroke-width="0.6"/>
+          <path id="e98" d="M0,320 Q300,314 600,318 Q900,322 1200,316 Q1300,314 1360,318" stroke-width="0.6"/>
+        </svg>
       </a>
     </div>
     <p class="hero-tagline">Over fifteen years of making the work and making it work.</p>
@@ -197,118 +297,72 @@
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
   // Pre-hide all drawable elements before animation
-  // ── CANVAS DRAWING ANIMATION ──
-  var W = 680, H = 180;
-  var INK = 'rgba(26,22,18,1)';
-
-  // All strokes: [type, coords, lineWidth]
-  // Types: 'rect', 'line', 'path', 'arc'
-  var strokes = [
-    // outer frame — drawn first, stays always
-    { t:'rect', x:6, y:6, w:668, h:168, lw:1.8 },
-    // window left
-    { t:'rect', x:24, y:20, w:104, h:76, lw:1.3 },
-    { t:'line', x1:76, y1:20, x2:76, y2:96, lw:1.0 },
-    { t:'line', x1:24, y1:58, x2:128, y2:58, lw:1.0 },
-    // cross-hatch inside window
-    { t:'line', x1:28, y1:24, x2:72, y2:54, lw:0.7 },
-    { t:'line', x1:40, y1:20, x2:72, y2:40, lw:0.7 },
-    { t:'line', x1:28, y1:38, x2:64, y2:58, lw:0.7 },
-    // horizon line
-    { t:'path', pts:[[6,104],[120,94],[240,104],[360,114],[480,102],[580,92],[674,104]], lw:1.1 },
-    // candle 1 body
-    { t:'rect', x:176, y:68, w:14, h:36, lw:1.1 },
-    // candle 1 flame
-    { t:'path', pts:[[182,64],[183,54],[184,64]], lw:1.0 },
-    // wax pool under candle 1
-    { t:'path', pts:[[170,104],[176,112],[183,108],[190,112],[196,104],[190,96],[183,98],[176,96],[170,104]], lw:1.1 },
-    // candle 2 body taller
-    { t:'rect', x:268, y:56, w:18, h:48, lw:1.1 },
-    // candle 2 flame
-    { t:'path', pts:[[277,52],[278,40],[279,52]], lw:1.0 },
-    // organic blob
-    { t:'path', pts:[[304,72],[318,60],[334,68],[340,80],[328,92],[312,96],[300,86],[296,76],[304,72]], lw:1.2 },
-    { t:'line', x1:306, y1:76, x2:326, y2:84, lw:0.7 },
-    { t:'line', x1:306, y1:68, x2:326, y2:76, lw:0.7 },
-    { t:'line', x1:310, y1:60, x2:328, y2:68, lw:0.7 },
-    // second window right
-    { t:'rect', x:428, y:24, w:88, h:64, lw:1.3 },
-    { t:'line', x1:472, y1:24, x2:472, y2:88, lw:1.0 },
-    { t:'line', x1:428, y1:56, x2:516, y2:56, lw:1.0 },
-    // third organic blob far right
-    { t:'path', pts:[[556,40],[572,28],[592,34],[600,50],[588,64],[568,66],[552,58],[548,44],[556,40]], lw:1.2 },
-    { t:'line', x1:558, y1:44, x2:590, y2:58, lw:0.7 },
-    { t:'line', x1:560, y1:34, x2:592, y2:48, lw:0.7 },
-    // wavy ground lines
-    { t:'path', pts:[[6,132],[100,122],[220,132],[340,142],[460,130],[560,120],[674,132]], lw:0.9 },
-    { t:'path', pts:[[6,156],[110,146],[230,156],[355,166],[475,154],[570,144],[674,156]], lw:0.9 }
-  ];
-
-  function drawStroke(ctx, s) {
-    ctx.beginPath();
-    ctx.lineWidth = s.lw;
-    ctx.strokeStyle = INK;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-    if (s.t === 'rect') {
-      ctx.strokeRect(s.x, s.y, s.w, s.h);
-    } else if (s.t === 'line') {
-      ctx.moveTo(s.x1, s.y1);
-      ctx.lineTo(s.x2, s.y2);
-      ctx.stroke();
-    } else if (s.t === 'path') {
-      ctx.moveTo(s.pts[0][0], s.pts[0][1]);
-      for (var i = 1; i < s.pts.length; i++) {
-        var prev = s.pts[i-1], curr = s.pts[i];
-        var mx = (prev[0] + curr[0]) / 2;
-        var my = (prev[1] + curr[1]) / 2;
-        ctx.quadraticCurveTo(prev[0], prev[1], mx, my);
-      }
-      ctx.lineTo(s.pts[s.pts.length-1][0], s.pts[s.pts.length-1][1]);
-      ctx.stroke();
-    }
+  // ── SVG DRAWING ANIMATION ──
+  var svgIds = [];
+  for (var i = 0; i <= 98; i++) {
+    if (document.getElementById('e'+i)) svgIds.push('e'+i);
   }
 
-  var canvas = document.getElementById('hero-canvas');
-  var ctx = canvas ? canvas.getContext('2d') : null;
-  var animTimer = null;
-
-  if (!ctx) { /* canvas hidden on mobile — skip all drawing */ }
-
-  function runAnimation(startFromIndex) {
-    // Clear any running animation
-    if (animTimer) clearTimeout(animTimer);
-    ctx.clearRect(0, 0, W, H);
-
-    // Always draw frame immediately
-    drawStroke(ctx, strokes[0]);
-
-    var idx = startFromIndex || 1;
-    var baseDelay = 80;
-
-    function drawNext() {
-      if (idx >= strokes.length) return;
-      drawStroke(ctx, strokes[idx]);
-      idx++;
-      animTimer = setTimeout(drawNext, baseDelay);
-    }
-    animTimer = setTimeout(drawNext, baseDelay);
+  function getLen(el) {
+    try { return Math.max(el.getTotalLength(), 20); } catch(e) { return 200; }
   }
 
-  function resetAndRedraw() {
-    if (animTimer) clearTimeout(animTimer);
-    // Clear interior (keep frame)
-    ctx.clearRect(0, 0, W, H);
-    // Blank beat — just the rectangle visible
-    drawStroke(ctx, strokes[0]);
-    // After beat, redraw everything
-    animTimer = setTimeout(function() { runAnimation(1); }, 350);
+  function svgAnimate() {
+    svgIds.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var len = getLen(el);
+      el.getAnimations && el.getAnimations().forEach(function(a){a.cancel();});
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+    });
+    svgIds.forEach(function(id, i) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var len = getLen(el);
+      var dur = Math.max(200, Math.min(len * 8, 900));
+      setTimeout(function() {
+        el.animate(
+          [{strokeDashoffset: len}, {strokeDashoffset: 0}],
+          {duration: dur, fill: 'forwards', easing: 'ease-out'}
+        );
+      }, i * 90);
+    });
+  }
+
+  function svgRedraw() {
+    var all = svgIds.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    var frame = all[0];
+    var interior = all.slice(1);
+    all.forEach(function(el){ el.getAnimations && el.getAnimations().forEach(function(a){a.cancel();}); });
+    interior.forEach(function(el){
+      var len = getLen(el);
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+    });
+    var frameLen = getLen(frame);
+    frame.style.strokeDasharray = frameLen;
+    frame.style.strokeDashoffset = 0;
+    setTimeout(function(){
+      interior.forEach(function(el, i){
+        var len = getLen(el);
+        var dur = Math.max(200, Math.min(len * 8, 900));
+        setTimeout(function(){
+          el.animate(
+            [{strokeDashoffset: len}, {strokeDashoffset: 0}],
+            {duration: dur, fill: 'forwards', easing: 'ease-out'}
+          );
+        }, i * 90);
+      });
+    }, 320);
   }
 
   window.addEventListener('load', function() {
-    if (!ctx) return;
-    runAnimation(0);
-    canvas.parentElement.addEventListener('mouseenter', resetAndRedraw);
+    var heroDrawing = document.getElementById('hero-drawing');
+    if (heroDrawing) {
+      setTimeout(svgAnimate, 300);
+      heroDrawing.parentElement.addEventListener('mouseenter', svgRedraw);
+    }
   });
 
   function openModal(title, src) {
