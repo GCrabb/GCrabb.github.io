@@ -76,6 +76,8 @@
     .contact-info a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--fluoro); display: inline-block; line-height: 1.3; transition: color 0.2s; }
     .contact-info a:hover { color: var(--brown); }
     .contact-availability { margin-top: 16px; font-size: 13px; color: var(--ink-light); line-height: 1.8; }
+    .contact-inner { display: flex; gap: 48px; align-items: flex-start; }
+    .contact-photo { width: 100px; height: 100px; object-fit: cover; object-position: center top; border-radius: 1px; flex-shrink: 0; display: block; }
 
     footer { border-top: 0.5px solid var(--ink-faint); padding: 20px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--ink-light); letter-spacing: 0.06em; }
     .footer-left { display: flex; align-items: center; gap: 16px; }
@@ -268,10 +270,13 @@
 
 <section class="contact" id="contact">
   <div class="section-label">Contact</div>
-  <div class="contact-info">
-    <a href="mailto:garrettcrabb@gmail.com">garrettcrabb@gmail.com</a>
-    <a href="https://www.linkedin.com/in/garrett-crabb/" target="_blank" rel="noopener">LinkedIn</a>
-    <p class="contact-availability">Available for freelance &amp; full-time.<br>New York &nbsp;·&nbsp; Mexico City &nbsp;·&nbsp; Remote</p>
+  <div class="contact-inner">
+    <div class="contact-info">
+      <a href="mailto:garrettcrabb@gmail.com">garrettcrabb@gmail.com</a>
+      <a href="https://www.linkedin.com/in/garrett-crabb/" target="_blank" rel="noopener">LinkedIn</a>
+      <p class="contact-availability">Available for freelance &amp; full-time.<br>New York &nbsp;·&nbsp; Mexico City &nbsp;·&nbsp; Remote</p>
+    </div>
+    <img class="contact-photo" src="Site_Preview.jpg" alt="Garrett Crabb" />
   </div>
 </section>
 
